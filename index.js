@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-app.post("/api/upload", upload.single("file"), (req, res) => {
+app.post("/upload", upload.single("file"), (req, res) => {
   try {
     return res.status(200).json("File uploded successfully");
   } catch (error) {
@@ -45,9 +45,9 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   }
 });
 
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
+app.use("/auth", authRoute);
+app.use("/users", userRoute);
+app.use("/posts", postRoute);
 
 app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
   console.log("Server is running.");
