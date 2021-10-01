@@ -44,15 +44,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
     console.error(error);
   }
 });
-// Before
-// const res = await fetch('http://localhost:5000/scores/'
-
-// After
-const res = await fetch('https://friends-again-api.herokuapp.com/')
-
-// The URL will either be the auto-generated
-// name from Netlify or if you changed the name it will
-// be the name you gave it
 
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
@@ -62,5 +53,4 @@ app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
   console.log("Server is running.");
 });
 
-app.get('/', (req, res) => { res.send('Hello from Express!')
-
+app.get('/', (req, res) => { res.send('Hello from Express!')});
