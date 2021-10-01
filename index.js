@@ -23,7 +23,7 @@ mongoose.connect(
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 //middleware
-app.get('/', express.json());
+app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
