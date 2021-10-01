@@ -44,7 +44,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
     console.error(error);
   }
 });
-
+app.get('/', handler)
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
 app.use("/posts", postRoute);
