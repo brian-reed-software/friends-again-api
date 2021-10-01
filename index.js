@@ -49,6 +49,8 @@ app.use("/auth", authRoute);
 app.use("/users", userRoute);
 app.use("/posts", postRoute);
 
-app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
+app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
   console.log("Server is running.");
 });
+
+app.get('/', (req, res) => { res.send('Hello from Express!')
