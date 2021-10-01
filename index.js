@@ -23,7 +23,7 @@ mongoose.connect(
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 //middleware
-app.use(express.json());
+app.get('/', express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
@@ -44,7 +44,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
     console.error(error);
   }
 });
-app.get('/', handler)
+
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
 app.use("/posts", postRoute);
