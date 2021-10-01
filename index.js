@@ -14,7 +14,7 @@ const path = require("path");
 dotenv.config();
 
 mongoose.connect(
-  process.env.MONGO_URL,
+  process.env.MONGODB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Connected to MongoDB");
@@ -44,6 +44,15 @@ app.post("/upload", upload.single("file"), (req, res) => {
     console.error(error);
   }
 });
+// Before
+// const res = await fetch('http://localhost:5000/scores/'
+
+// After
+const res = await fetch('https://friends-again-api.herokuapp.com/')
+
+// The URL will either be the auto-generated
+// name from Netlify or if you changed the name it will
+// be the name you gave it
 
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
@@ -54,3 +63,4 @@ app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
 });
 
 app.get('/', (req, res) => { res.send('Hello from Express!')
+
