@@ -48,8 +48,10 @@ app.post("/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.set("trust proxy", 1);
 
 app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
   console.log("Server is running.");
 });
 
+// app.get('/', (req, res) => { res.send('Hello from Express!')});
