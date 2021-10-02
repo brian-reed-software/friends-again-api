@@ -20,7 +20,7 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
-app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("/api/images", express.static(path.join(__dirname, "public/images")));
 
 //middleware
 app.use(express.json());
@@ -45,9 +45,9 @@ app.post("/upload", upload.single("file"), (req, res) => {
   }
 });
 
-app.use("/auth", authRoute);
-app.use("/users", userRoute);
-app.use("/posts", postRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
 
 app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
   console.log("Server is running.");
