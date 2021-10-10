@@ -14,8 +14,10 @@ const path = require("path");
 dotenv.config();
 
 mongoose.connect(
-  process.env.MONGODB_URI,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  },
   () => {
     console.log("Connected to MongoDB");
   }
@@ -36,7 +38,9 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage
+});
 app.post("/upload", upload.single("file"), (req, res) => {
   try {
     return res.status(200).json("File uploded successfully");
@@ -51,7 +55,20 @@ app.use("/api/posts", postRoute);
 app.set("trust proxy", 1);
 
 app.all('*', (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://localhost:3000");
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
   next();
 });
 
