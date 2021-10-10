@@ -13,9 +13,9 @@ const router = express.Router();
 const path = require("path");
 const cookieParser = require('cookie-parser');
 
-var allowedOrigins = ['http://someorigin.com',
-  'http://anotherorigin.com',
-  'http://localhost:9080'
+var allowedOrigins = ['https://friends-again-api.herokuapp.com/api/',
+  'https://friends-again-api.herokuapp.com/',
+  'http://localhost:3000'
 ];
 
 app.use(cors({
