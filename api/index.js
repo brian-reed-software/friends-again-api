@@ -11,7 +11,6 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const router = express.Router();
 const path = require("path");
-const cookieParser = require('cookie-parser');
 
 var allowedOrigins = ['https://friends-again-api.herokuapp.com/api/',
   'https://friends-again-api.herokuapp.com/',
@@ -37,19 +36,6 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(cookieParser());
-
-app.use('/', function (req, res) {
-  console.log(req.cookies);
-  res.setHeader('X-Foo', 'bar');
-  res.cookie('sessionID', '12345', {
-    httpOnly: true,
-    expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // 15 days
-  });
-  res.json({
-    msg: 'Hello World'
-  });
-});
 
 
 
