@@ -11,6 +11,7 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const router = express.Router();
 const path = require("path");
+const proxy = require('http-proxy-middleware');
 
 var allowedOrigins = ['https://friends-again-api.herokuapp.com/api/',
   'https://friends-again-api.herokuapp.com/',
@@ -112,4 +113,12 @@ app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
 
 
 // app.get('/', (req, res) => { res.send('Hello from Express!')});
-module.exports = app;
+
+
+module.exports = function (app) {
+  app.use(proxy('/api', {
+    target: 'https://friends-again-api.herokuapp.com/',
+    logLevel: 'debug',
+    changeOrigin: true
+  }));
+};
