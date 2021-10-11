@@ -82,6 +82,7 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.set("trust proxy", 1);
 app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
@@ -111,3 +112,4 @@ app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
 
 
 // app.get('/', (req, res) => { res.send('Hello from Express!')});
+module.exports = app;
